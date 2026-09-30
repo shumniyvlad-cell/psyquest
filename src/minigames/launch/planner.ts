@@ -7,6 +7,7 @@ export type PlanLength = (typeof PLAN_LENGTHS)[number]
 
 export const CHANNEL_LABEL: Record<Channel, string> = {
   instagram: 'Instagram',
+  threads: 'Threads',
   telegram: 'Telegram',
   vk: 'ВКонтакте',
   youtube: 'YouTube',
@@ -17,6 +18,7 @@ export const CHANNEL_LABEL: Record<Channel, string> = {
 /** Два базовых формата канала: [публичный, личный] */
 export const CHANNEL_FORMATS: Record<Channel, readonly [string, string]> = {
   instagram: ['Рилс', 'Сторис'],
+  threads: ['Тред', 'Пост'],
   tiktok: ['Рилс', 'Сторис'],
   telegram: ['Пост', 'Голосовое'],
   vk: ['Пост', 'Клип'],
@@ -28,6 +30,7 @@ export const FORMAT_TIP: Record<string, string> = {
   Рилс: 'До минуты, крючок в первые три секунды, в конце — один понятный шаг.',
   Сторис: 'Четыре-шесть кадров, живое видео и стикер-вопрос или опрос.',
   Пост: 'Один тезис, личный пример и вопрос к читателю.',
+  Тред: 'Цепочка из трёх-семи коротких постов: крючок в первом, по одной мысли в каждом, в конце — вопрос.',
   Голосовое: 'До трёх минут, как разговор с одним человеком.',
   Клип: 'Вертикальное видео до минуты, субтитры обязательны.',
   Shorts: 'До минуты, мысль — с первого кадра.',

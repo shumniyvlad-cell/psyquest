@@ -242,7 +242,11 @@ function genPlan(days: number, s: ReturnType<typeof useGame.getState>, seed: num
   const rubrics: ContentPlanDay['rubric'][] = ['expert', 'personal', 'expert', 'engaging', 'expert', 'selling', 'personal']
   const channel = s.goal?.channel ?? 'instagram'
   const formats: ContentPlanDay['format'][] =
-    channel === 'telegram' ? ['post', 'post', 'stories', 'post', 'live', 'post', 'stories'] : ['reel', 'stories', 'reel', 'post', 'reel', 'stories', 'live']
+    channel === 'telegram'
+      ? ['post', 'post', 'stories', 'post', 'live', 'post', 'stories']
+      : channel === 'threads'
+        ? ['post', 'post', 'reel', 'post', 'post', 'post', 'reel']
+        : ['reel', 'stories', 'reel', 'post', 'reel', 'stories', 'live']
   const used: Record<string, number> = {}
   return Array.from({ length: days }, (_, i) => {
     const rubric = rubrics[(i + seed) % rubrics.length]

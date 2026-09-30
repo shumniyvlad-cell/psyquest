@@ -14,7 +14,7 @@ export type ChapterId =
   | 'lighthouse'
 export type ChapterStatus = 'locked' | 'available' | 'active' | 'done'
 export type ChapterMode = 'full' | 'express'
-export type Channel = 'instagram' | 'telegram' | 'vk' | 'youtube' | 'tiktok' | 'offline'
+export type Channel = 'instagram' | 'threads' | 'telegram' | 'vk' | 'youtube' | 'tiktok' | 'offline'
 export type AudienceSize = 'zero' | 'small' | 'mid' | 'big'
 export type LanternId = 'amber' | 'mint' | 'rose' | 'lilac' | 'emerald' | 'aurora' | 'crimson'
 

@@ -22,7 +22,7 @@ const TABS: { id: Tab; label: string }[] = [
   { id: 'sim', label: 'Буря Хаоса' },
   { id: 'balance', label: 'Демон Выгорания' },
 ]
-const CHANNELS: Channel[] = ['instagram', 'telegram', 'vk', 'youtube', 'tiktok', 'offline']
+const CHANNELS: Channel[] = ['instagram', 'threads', 'telegram', 'vk', 'youtube', 'tiktok', 'offline']
 
 const readTab = (): Tab => {
   const h = location.hash.slice(1) as Tab

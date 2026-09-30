@@ -17,6 +17,7 @@ import type {
 const AUDIENCE_WEEKLY_REACH: Record<AudienceSize, number> = { zero: 300, small: 1500, mid: 6000, big: 20000 }
 const CHANNEL_MULT: Record<Channel, number> = {
   instagram: 1,
+  threads: 1.2,
   telegram: 0.75,
   vk: 0.8,
   youtube: 0.9,
@@ -48,6 +49,7 @@ export const AUDIENCE_LABEL: Record<AudienceSize, string> = {
 
 export const CHANNEL_LABEL: Record<Channel, string> = {
   instagram: 'Instagram',
+  threads: 'Threads',
   telegram: 'Telegram-канал',
   vk: 'ВКонтакте',
   youtube: 'YouTube',
