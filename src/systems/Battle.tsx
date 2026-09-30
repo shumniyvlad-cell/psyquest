@@ -113,6 +113,10 @@ export function Battle({ boss, onWin, onLeave }: Props) {
   const [stats2, setStats2] = useState({ bad: 0, great: 0 })
   const [typed, setTyped] = useState(0)
   const timers = useRef<ReturnType<typeof setTimeout>[]>([])
+  // карточка Роршаха подстраивается под экран: высота карточки = 0.8 ширины
+  const [blotSize] = useState(() =>
+    typeof window === 'undefined' ? 340 : Math.round(Math.min(340, window.innerWidth * 0.78, (window.innerHeight * 0.3) / 0.8)),
+  )
 
   const bossHp = headHp.reduce((a, b) => a + Math.max(0, b), 0)
 
@@ -297,7 +301,7 @@ export function Battle({ boss, onWin, onLeave }: Props) {
 
       <div className="bt-arena">
         <div className="bt-card-wrap">
-          <Inkblot {...BOSS_LOOKS[boss.look]} hp={bossMax ? bossHp / bossMax : 0} heads={heads.length ? headsView : undefined} state={bossState} size={340} />
+          <Inkblot {...BOSS_LOOKS[boss.look]} hp={bossMax ? bossHp / bossMax : 0} heads={heads.length ? headsView : undefined} state={bossState} size={blotSize} />
           {floaters
             .filter((f) => f.side === 'boss')
             .map((f) => (

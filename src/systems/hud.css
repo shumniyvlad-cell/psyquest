@@ -72,9 +72,8 @@
   text-overflow: ellipsis;
 }
 .hud-lvl {
-  font-weight: 500;
+  font-weight: 600;
   color: var(--lantern-hi);
-  font-size: 13px;
 }
 .hud-title {
   color: var(--paper-dim);

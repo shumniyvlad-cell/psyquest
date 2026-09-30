@@ -1,4 +1,8 @@
-name: Deploy to GitHub Pages
+name: Build and deploy
+
+# Сборка проверяется на каждом пуше. Публикация на GitHub Pages включается так:
+# Settings → Pages → Source: GitHub Actions, затем Settings → Secrets and variables → Actions →
+# Variables: PAGES_ENABLED = true. Адрес сервера игры (если есть) — переменная VITE_API_URL.
 
 on:
   push:
@@ -26,12 +30,29 @@ jobs:
       - run: npm ci
       - run: npm run build
         env:
-          # Адрес сервера игры — задаётся в Settings → Secrets and variables → Actions → Variables
           VITE_API_URL: ${{ vars.VITE_API_URL }}
       - uses: actions/upload-pages-artifact@v3
+        if: vars.PAGES_ENABLED == 'true'
         with:
           path: dist
+
+  server:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: server
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: server/package-lock.json
+      - run: npm ci
+      - run: npm run typecheck
+
   deploy:
+    if: vars.PAGES_ENABLED == 'true'
     needs: build
     runs-on: ubuntu-latest
     environment:

@@ -39,6 +39,7 @@ function LighthouseHub({ api }: { api: StepApi }) {
   const clients = useSeasonClients()
   const burnoutDone = useGame((s) => !!s.flags[`burnout_s${s.season}`])
   const [fight, setFight] = useState(false)
+  const [folded, setFolded] = useState(false)
   const target = goal?.clients ?? 10
   const lit = Math.min(1, clients.length / target)
   const half = Math.ceil(target / 2)
@@ -81,9 +82,14 @@ function LighthouseHub({ api }: { api: StepApi }) {
   return (
     <div className="lh">
       <LighthouseArt lit={lit} ships={Math.min(12, clients.length)} />
-      <aside className="lh-panel panel scroll">
+      <aside className={`lh-panel panel scroll ${folded ? 'is-folded' : ''}`}>
         <div className="stack">
-          <h2 className="display t-31">Маяк</h2>
+          <div className="spread">
+            <h2 className="display t-31">Маяк</h2>
+            <button className="btn btn-quiet btn-sm lh-fold" onClick={() => setFolded(!folded)} aria-expanded={!folded}>
+              {folded ? `Развернуть, ${clients.length} из ${target}` : 'Свернуть'}
+            </button>
+          </div>
           <p className="muted">
             {reached
               ? 'Все огни горят. Осталось зажечь лампу.'

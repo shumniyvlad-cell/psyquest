@@ -33,10 +33,10 @@ export function Hud() {
           {skillPoints > 0 ? <span className="hud-dot" aria-label="Есть очки навыков" /> : null}
         </span>
         <span className="hud-who">
-          <span className="hud-name">
-            {hero?.name ?? 'Фонарщик'} <span className="hud-lvl num">ур. {level}</span>
+          <span className="hud-name">{hero?.name ?? 'Фонарщик'}</span>
+          <span className="hud-title tiny">
+            {titleForLevel(level)}, <span className="hud-lvl num">ур. {level}</span>
           </span>
-          <span className="hud-title tiny">{titleForLevel(level)}</span>
           <Bar value={xp} max={need} height={5} label="Опыт" />
         </span>
       </button>

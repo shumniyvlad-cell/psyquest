@@ -54,3 +54,21 @@
     bottom: calc(8px + var(--safe-bottom));
   }
 }
+.lh-fold {
+  display: none;
+}
+@media (max-width: 760px) {
+  .lh-fold {
+    display: inline-flex;
+  }
+  .lh-panel.is-folded {
+    height: auto;
+    overflow: hidden;
+  }
+  .lh-panel.is-folded > :not(:first-child) {
+    display: none;
+  }
+  .lh-panel.is-folded .stack > :not(:first-child) {
+    display: none;
+  }
+}
