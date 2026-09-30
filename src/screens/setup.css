@@ -1,0 +1,222 @@
+.su-scroll {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  padding: calc(24px + var(--safe-top)) 16px calc(32px + var(--safe-bottom));
+}
+.su-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 0.75fr) minmax(0, 1.25fr);
+  gap: 24px;
+  width: min(1120px, 100%);
+  margin: 0 auto;
+  align-items: start;
+}
+.su-preview {
+  position: sticky;
+  top: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding-top: 40px;
+  text-align: center;
+}
+.su-panel,
+.su-oath,
+.su-route {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.su-oath,
+.su-route {
+  width: min(760px, 100%);
+  margin: 0 auto;
+}
+.su-owl {
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  gap: 14px;
+  align-items: end;
+}
+.su-owl svg {
+  max-width: 110px;
+  height: auto;
+}
+.su-owl-say {
+  position: relative;
+  font-family: var(--font-display);
+  font-size: 19px;
+  line-height: 1.45;
+  padding: 14px 16px;
+  border-radius: 16px 16px 16px 4px;
+  background: rgba(255, 214, 150, 0.07);
+  border: 1px solid var(--line);
+  margin-bottom: 14px;
+}
+.su-classes {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 8px;
+}
+.su-class {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 14px;
+}
+.su-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding-top: 4px;
+}
+.su-steps {
+  display: flex;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  flex-wrap: wrap;
+}
+.su-steps li {
+  font-size: 13px;
+  padding: 4px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  color: var(--fog);
+}
+.su-steps li.is-done {
+  color: var(--paper-dim);
+  border-color: var(--line-strong);
+}
+.su-steps li.is-now {
+  color: #2b1705;
+  background: var(--lantern-hi);
+  border-color: var(--lantern-hi);
+}
+.su-big {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+}
+.su-big .display {
+  font-size: 72px;
+  line-height: 1;
+  color: var(--lantern-hi);
+  text-shadow: 0 0 30px rgba(255, 181, 71, 0.45);
+}
+.su-sum {
+  font-size: 18px;
+}
+.su-has {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+.su-check {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  cursor: pointer;
+}
+.su-route-head {
+  flex-wrap: wrap;
+}
+.su-funnel {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.su-funnel-row {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.su-funnel-bar {
+  min-width: 90px;
+  padding: 8px 14px;
+  border-radius: 12px;
+  background: linear-gradient(90deg, rgba(255, 181, 71, 0.32), rgba(255, 181, 71, 0.08));
+  border: 1px solid rgba(255, 181, 71, 0.35);
+}
+.su-funnel-bar .display {
+  font-size: 26px;
+  color: var(--lantern-hi);
+}
+.su-funnel-row:last-child .su-funnel-bar {
+  background: linear-gradient(90deg, rgba(111, 227, 200, 0.4), rgba(111, 227, 200, 0.1));
+  border-color: rgba(111, 227, 200, 0.45);
+}
+.su-funnel-row:last-child .su-funnel-bar .display {
+  color: var(--aurora);
+}
+.su-lands {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.su-land {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 12px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--line);
+  flex-wrap: wrap;
+}
+.su-advice {
+  margin: 0;
+  padding-left: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  line-height: 1.55;
+}
+.su-advice li::marker {
+  color: var(--lantern);
+}
+.hs-swatch {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+@media (max-width: 860px) {
+  .su-layout {
+    grid-template-columns: 1fr;
+  }
+  .su-preview {
+    position: relative;
+    top: 0;
+    padding-top: 0;
+  }
+  .su-preview svg {
+    height: 180px;
+    width: auto;
+  }
+}
+@media (max-width: 560px) {
+  .su-owl {
+    grid-template-columns: 72px 1fr;
+  }
+  .su-owl svg {
+    max-width: 72px;
+  }
+  .su-owl-say {
+    font-size: 16.5px;
+  }
+  .su-has {
+    grid-template-columns: 1fr;
+  }
+  .su-big .display {
+    font-size: 56px;
+  }
+}

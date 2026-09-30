@@ -1,0 +1,77 @@
+.st-formulas {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 8px;
+}
+.st-formula {
+  font-size: 14.5px;
+  padding: 10px 12px;
+}
+.st-formula.is-locked {
+  opacity: 0.55;
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+.st-hook {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+.st-plan {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 8px;
+}
+.st-day {
+  padding: 10px;
+  border-radius: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  border-top: 3px solid var(--line-strong);
+}
+.st-day.is-expert {
+  border-top-color: var(--aurora);
+}
+.st-day.is-personal {
+  border-top-color: var(--rose);
+}
+.st-day.is-engaging {
+  border-top-color: #b9a4ff;
+}
+.st-day.is-selling {
+  border-top-color: var(--lantern);
+}
+.st-tag {
+  color: var(--paper-dim);
+  text-align: right;
+}
+.st-topic {
+  width: 100%;
+  background: transparent;
+  border: 0;
+  resize: vertical;
+  color: var(--paper);
+  font: 400 13.5px/1.4 var(--font-ui);
+  padding: 0;
+  min-height: 56px;
+}
+.st-topic:focus {
+  outline: none;
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 6px;
+}
+.st-montage {
+  align-items: flex-start;
+}
+@media (max-width: 1100px) {
+  .st-plan {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+@media (max-width: 640px) {
+  .st-plan {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

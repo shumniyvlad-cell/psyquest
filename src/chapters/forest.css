@@ -1,0 +1,92 @@
+.fp-fog {
+  position: fixed;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 60% 40% at 30% 70%, rgba(169, 166, 214, 0.9), transparent 70%),
+    radial-gradient(ellipse 70% 45% at 75% 35%, rgba(142, 139, 184, 0.85), transparent 70%),
+    radial-gradient(ellipse 90% 60% at 50% 50%, rgba(120, 118, 170, 0.7), transparent 80%);
+  transition: opacity 0.6s ease;
+  animation: drift 14s ease-in-out infinite alternate;
+}
+.workbench > .panel,
+.workbench > section,
+.workbench > .hp-footer {
+  position: relative;
+  z-index: 4;
+}
+.fp-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+  gap: 8px;
+}
+.fp-card {
+  font-size: 15px;
+  padding: 10px 12px;
+}
+.fp-duel {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 20px;
+  align-items: center;
+}
+.fp-blot {
+  display: grid;
+  place-items: center;
+}
+.fp-fogline {
+  font-family: var(--font-display);
+  font-size: 17px;
+  color: #d6c8ff;
+}
+.fp-text {
+  font-size: 18px;
+  line-height: 1.55;
+  min-height: 120px;
+}
+.fp-notes {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.fp-tip {
+  color: var(--paper-dim);
+  padding-left: 14px;
+  position: relative;
+}
+.fp-tip::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.62em;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--lantern);
+}
+.fp-clear {
+  align-items: center;
+  text-align: center;
+}
+.fp-quote {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 22px;
+  line-height: 1.45;
+  color: var(--paper);
+  max-width: 44ch;
+}
+@media (max-width: 640px) {
+  .fp-duel {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    text-align: center;
+  }
+  .fp-cards {
+    grid-template-columns: 1fr 1fr;
+  }
+  .fp-card {
+    font-size: 14px;
+  }
+}

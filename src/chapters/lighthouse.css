@@ -1,0 +1,56 @@
+.lh {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+}
+.lh-panel {
+  position: absolute;
+  top: calc(60px + var(--safe-top));
+  right: 16px;
+  bottom: calc(16px + var(--safe-bottom));
+  width: min(440px, calc(100% - 32px));
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  overflow-y: auto;
+}
+.lh-demon {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: flex-start;
+  border-color: rgba(255, 138, 61, 0.45);
+  background: rgba(255, 107, 60, 0.07);
+}
+.lh-final {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: flex-start;
+  border-color: rgba(255, 181, 71, 0.5);
+  background: rgba(255, 181, 71, 0.08);
+}
+.lh-fight {
+  position: absolute;
+  inset: 0;
+  z-index: 6;
+  overflow-y: auto;
+  padding: calc(60px + var(--safe-top)) 16px calc(24px + var(--safe-bottom));
+  background: radial-gradient(ellipse at 50% 40%, rgba(40, 10, 10, 0.55), rgba(5, 6, 18, 0.92));
+}
+.lh-fight-leave {
+  display: flex;
+  justify-content: center;
+  padding-top: 12px;
+}
+@media (max-width: 760px) {
+  .lh-panel {
+    top: auto;
+    left: 8px;
+    right: 8px;
+    width: auto;
+    height: 62vh;
+    bottom: calc(8px + var(--safe-bottom));
+  }
+}

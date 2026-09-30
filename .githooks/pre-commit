@@ -1,0 +1,10 @@
+#!/bin/sh
+# Проверка секретов перед коммитом. Включить: git config core.hooksPath .githooks
+if command -v gitleaks >/dev/null 2>&1; then
+  gitleaks git --pre-commit --staged --redact --no-banner || {
+    echo "gitleaks нашёл что-то похожее на секрет. Убери его из коммита (секреты — только в .env)."
+    exit 1
+  }
+else
+  echo "gitleaks не установлен — проверка секретов пропущена (brew install gitleaks)."
+fi
