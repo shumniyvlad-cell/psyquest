@@ -5,6 +5,7 @@ import { sfx, stinger } from '../../audio/engine'
 import { Button } from '../../ui/Button'
 import type { DeployResult } from './BotBuilder'
 import { botScriptText, exportableConfig } from './model'
+import { IN_ARTIFACT } from '../../env'
 import { copyText, downloadFile, plural, slugify } from './util'
 
 export const TOKEN_RE = /^\d{6,}:[A-Za-z0-9_-]{30,}$/
@@ -85,9 +86,11 @@ export function ExportPanel({ cfg }: { cfg: BotConfig }) {
         </div>
       </div>
       <div className="row-wrap">
+        {!IN_ARTIFACT ? (
         <Button variant="ghost" className="bb-btn-wrap" icon={<Download size={17} />} sound={false} onClick={download}>
           Скачать сценарий (JSON)
         </Button>
+        ) : null}
         <Button
           variant="ghost"
           className="bb-btn-wrap"

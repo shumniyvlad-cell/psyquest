@@ -3,6 +3,7 @@ import { isDemo, serverInfo } from '../api/client'
 import { sfx } from '../audio/engine'
 import { useGame } from '../game/store'
 import type { Settings } from '../game/types'
+import { IN_ARTIFACT } from '../env'
 import { Button } from '../ui/Button'
 import { Field } from '../ui/Field'
 
@@ -76,8 +77,22 @@ export function SettingsPanel() {
         <b>Сохранение</b>
         <p className="small faint">Игра хранится в этом браузере. Скачай файл, чтобы перенести прогресс на другое устройство.</p>
         <div className="row-wrap">
-          <Button variant="ghost" size="sm" onClick={exportSave}>
-            Скачать сохранение
+          {!IN_ARTIFACT ? (
+            <Button variant="ghost" size="sm" onClick={exportSave}>
+              Скачать сохранение
+            </Button>
+          ) : null}
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={() => {
+              navigator.clipboard?.writeText(useGame.getState().exportSave()).then(
+                () => setMsg('Сохранение скопировано. Вставь его в заметку или файл .json, чтобы перенести игру.'),
+                () => setMsg('Браузер не дал скопировать. Попробуй кнопку ещё раз.'),
+              )
+            }}
+          >
+            Скопировать сохранение
           </Button>
           <Button variant="ghost" size="sm" onClick={() => fileRef.current?.click()}>
             Загрузить сохранение

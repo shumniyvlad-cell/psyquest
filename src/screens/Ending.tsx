@@ -6,7 +6,9 @@ import { fmtRub, plural } from '../game/planner'
 import { titleForLevel } from '../game/progression'
 import { useGame, useSeasonClients, type SaveData } from '../game/store'
 import { artifactSections } from '../systems/ChestPanel'
+import { IN_ARTIFACT } from '../env'
 import { Button } from '../ui/Button'
+import { Modal } from '../ui/Modal'
 import { isInstantNow } from '../ui/useInstant'
 import './ending.css'
 
@@ -169,15 +171,22 @@ export function Ending() {
     }
   }, [])
 
-  const download = async () => {
+  const [cert, setCert] = useState<string | null>(null)
+  const showCert = async () => {
     const blob = await makeCertificate(useGame.getState(), clients.length)
     if (!blob) return
-    const url = URL.createObjectURL(blob)
+    setCert(URL.createObjectURL(blob))
+  }
+  const closeCert = () => {
+    if (cert) URL.revokeObjectURL(cert)
+    setCert(null)
+  }
+  const download = () => {
+    if (!cert) return
     const a = document.createElement('a')
-    a.href = url
-    a.download = `psyquest-smotritel-mayaka.png`
+    a.href = cert
+    a.download = 'psyquest-smotritel-mayaka.png'
     a.click()
-    setTimeout(() => URL.revokeObjectURL(url), 1500)
   }
 
   return (
@@ -221,8 +230,8 @@ export function Ending() {
               Всё, что ты {hero?.gender === 'm' ? 'создал' : 'создала'} в пути, лежит в Сундуке: позиционирование, продукт, бот, контент, план запуска и сценарий продаж. Это уже не игра — это твоя практика.
             </p>
             <div className="row-wrap">
-              <Button variant="lit" onClick={download}>
-                Скачать сертификат
+              <Button variant="lit" onClick={showCert}>
+                Сертификат
               </Button>
               <Button variant="ghost" onClick={() => useGame.getState().go('oath')}>
                 Новая цель
@@ -235,6 +244,21 @@ export function Ending() {
           </div>
         ) : null}
       </main>
+      <Modal open={!!cert} onClose={closeCert} title="Смотритель Маяка" width={520}>
+        {cert ? (
+          <div className="stack en-cert">
+            <img src={cert} alt="Сертификат «Смотритель Маяка»" className="en-cert-img" />
+            <p className="small muted">
+              Картинка 1080 на 1350 — формат поста и сторис. {IN_ARTIFACT ? 'Чтобы сохранить, нажми на неё правой кнопкой или удерживай палец.' : ''}
+            </p>
+            {!IN_ARTIFACT ? (
+              <Button variant="lit" onClick={download}>
+                Скачать картинку
+              </Button>
+            ) : null}
+          </div>
+        ) : null}
+      </Modal>
     </div>
   )
 }

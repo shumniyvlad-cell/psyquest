@@ -1,5 +1,6 @@
 // Вкладка «Экспорт»: проверка перед записью, запись в реальном времени, результат.
 import { useRef, type ReactNode } from 'react'
+import { IN_ARTIFACT } from '../../env'
 import {
   CircleAlert,
   CircleCheck,
@@ -249,11 +250,17 @@ export function ExportPanel(p: ExportPanelProps) {
               <p className="small muted num">
                 {fmtTime(p.result.durationSec)}, {fmtBytes(p.result.size)}
               </p>
-              <p className="field-hint">Файл сохранён в загрузки. Если браузер его не скачал — нажмите кнопку ниже.</p>
+              <p className="field-hint">
+                {IN_ARTIFACT
+                  ? 'В этой версии игры файл не скачивается сам. Сохрани ролик через меню видео (правая кнопка или долгий тап) или открой полную версию игры.'
+                  : 'Файл сохранён в загрузки. Если браузер его не скачал — нажмите кнопку ниже.'}
+              </p>
               <div className="row-wrap">
-                <Button size="sm" variant="aurora" icon={<Download size={16} />} onClick={p.onDownload}>
-                  Скачать ещё раз
-                </Button>
+                {!IN_ARTIFACT ? (
+                  <Button size="sm" variant="aurora" icon={<Download size={16} />} onClick={p.onDownload}>
+                    Скачать ещё раз
+                  </Button>
+                ) : null}
                 {p.canShare ? (
                   <Button size="sm" variant="ghost" icon={<Share2 size={16} />} onClick={p.onShare}>
                     Поделиться

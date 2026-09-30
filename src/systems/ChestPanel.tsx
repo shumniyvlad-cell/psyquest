@@ -3,6 +3,7 @@ import { Copy, Download, FileJson, Printer } from 'lucide-react'
 import { botScriptText } from '../minigames/bot/model'
 import { fmtRub } from '../game/planner'
 import { useGame, type SaveData } from '../game/store'
+import { IN_ARTIFACT } from '../env'
 import { Button } from '../ui/Button'
 
 interface Section {
@@ -124,13 +125,30 @@ export function ChestPanel() {
     <div className="stack">
       <p className="small muted">Всё, что создано в пути, — твоё: копируй, скачивай, переноси в соцсети и документы.</p>
       <div className="row-wrap">
-        <Button variant="lit" size="sm" icon={<Download size={16} />} onClick={() => download(`psyquest-${name}.md`, md())}>
-          Скачать всё (.md)
+        <Button
+          variant={IN_ARTIFACT ? 'lit' : 'ghost'}
+          size="sm"
+          icon={<Copy size={16} />}
+          onClick={() => {
+            navigator.clipboard?.writeText(md()).then(
+              () => setCopied('all'),
+              () => setCopied(''),
+            )
+          }}
+        >
+          {copied === 'all' ? 'Всё скопировано' : 'Скопировать всё'}
         </Button>
-        <Button variant="ghost" size="sm" icon={<Printer size={16} />} onClick={() => printSections(title, sections)}>
-          Печать или PDF
-        </Button>
-        {state.artifacts.bot ? (
+        {!IN_ARTIFACT ? (
+          <>
+            <Button variant="lit" size="sm" icon={<Download size={16} />} onClick={() => download(`psyquest-${name}.md`, md())}>
+              Скачать всё (.md)
+            </Button>
+            <Button variant="ghost" size="sm" icon={<Printer size={16} />} onClick={() => printSections(title, sections)}>
+              Печать или PDF
+            </Button>
+          </>
+        ) : null}
+        {state.artifacts.bot && !IN_ARTIFACT ? (
           <Button
             variant="ghost"
             size="sm"
